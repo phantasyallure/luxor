@@ -23,12 +23,31 @@
   align-items: center;
   /* the signature's flourishes overhang its box; give it room */
   padding: 4px 6px;
+  transition: opacity 0.25s ease;
 }
+.site-header__brand:hover { opacity: 0.82; }
 
 .site-header__mark {
-  font-size: 3.1rem;
+  position: relative;
+  font-size: 3rem;
+  letter-spacing: 0.18em;
+  padding-inline-end: 0.18em; /* balance the extra tracking after the last letter */
   color: var(--gold);
   transform: translateY(2px);
+  transition: color 0.25s ease;
+}
+
+/* A small diamond spark between the two letters, echoing the wordmark. */
+.site-header__mark::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  inset-inline-start: 1.28em;
+  width: 6px;
+  height: 6px;
+  background: var(--gold-light);
+  transform: rotate(45deg);
+  border-radius: 1.5px;
 }
 
 .lang-switch {
