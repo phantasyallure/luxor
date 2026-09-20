@@ -47,7 +47,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="container site-header__inner">
         <Link to="/" className="site-header__brand" aria-label="Luxor Accessories">
-          <span className="brand-mark site-header__mark">LA</span>
+          <span className="brand-mark site-header__mark">LX</span>
         </Link>
 
         <div className="lang-switch" ref={wrapRef}>
