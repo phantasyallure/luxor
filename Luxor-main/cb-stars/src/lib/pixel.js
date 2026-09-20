@@ -138,6 +138,7 @@ export function trackPixel(event, data) {
     // e.g. a product page fires ViewContent before the pixel ids have been fetched
     if (pending.length < 20) pending.push([event, data])
     return
+    
   }
   send(event, data)
 }
