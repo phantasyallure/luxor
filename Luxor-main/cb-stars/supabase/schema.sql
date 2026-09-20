@@ -325,6 +325,7 @@ create policy "Admins delete product images" on storage.objects for delete
 -- This resets those old ids to 'other' so every product stays visible; open
 -- it in the admin Products tab afterwards and re-tag it under a real
 -- accessory category.
+
 update products
 set category = 'other'
 where category in (
