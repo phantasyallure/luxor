@@ -9,7 +9,7 @@ import { COLOR_PRESETS, colorName, normalizeHex } from '../../data/colors.js'
 import { CLOTHING_SIZES } from '../../data/sizes.js'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 
-const MAX_PHOTOS = 5
+const MAX_PHOTOS = 30
 
 let uid = 0
 const nextId = () => `p${++uid}`
