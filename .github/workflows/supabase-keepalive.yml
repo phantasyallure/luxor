@@ -1,0 +1,28 @@
+name: Supabase keep-alive
+
+on:
+  schedule:
+    # Monday 04:00 Algeria time (UTC+1) = 03:00 UTC
+    - cron: '0 3 * * 1'
+    # Thursday safety ping, so the project never hits 7 days of inactivity
+    - cron: '0 3 * * 4'
+  workflow_dispatch: # lets you run it manually from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -e
+          status=$(curl -s -o /dev/null -w "%{http_code}" \
+            "$SUPABASE_URL/rest/v1/delivery_rates?select=*&limit=1" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY")
+          echo "Supabase responded with HTTP $status"
+          if [ "$status" -lt 200 ] || [ "$status" -ge 300 ]; then
+            exit 1
+          fi
